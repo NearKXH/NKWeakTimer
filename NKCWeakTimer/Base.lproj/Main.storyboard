@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Guq-1t-AVd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--NKCWeakTimer-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,131 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxs-g4-A70">
+                                <rect key="frame" x="164" y="96" width="46.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsi-lg-2ft">
+                                <rect key="frame" x="171.5" y="565" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="021-8p-ouz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFQ-Cj-dzl">
+                                <rect key="frame" x="148" y="489" width="78" height="30"/>
+                                <state key="normal" title="Start Timer"/>
+                                <connections>
+                                    <action selector="startTimerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eST-UM-rkE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-xJ-6rQ">
+                                <rect key="frame" x="168" y="137" width="39" height="76.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OM-8n-ovJ">
+                                <rect key="frame" x="172" y="527" width="30" height="30"/>
+                                <state key="normal" title="Fire"/>
+                                <connections>
+                                    <action selector="fireAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8bC-VV-QPe"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pO9-Ce-VeJ">
+                                <rect key="frame" x="31" y="233.5" width="313" height="235.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pO9-Ce-VeJ" secondAttribute="trailing" constant="15" id="2NR-Li-zdp"/>
+                            <constraint firstItem="3OM-8n-ovJ" firstAttribute="top" secondItem="ZFQ-Cj-dzl" secondAttribute="bottom" constant="8" id="544-rs-gyS"/>
+                            <constraint firstItem="pO9-Ce-VeJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="15" id="LA0-5V-xfa"/>
+                            <constraint firstItem="3OM-8n-ovJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sad-M8-ldu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wsi-lg-2ft" secondAttribute="bottom" constant="72" id="Vtb-BX-Yu2"/>
+                            <constraint firstItem="Wsi-lg-2ft" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xek-5j-rOA"/>
+                            <constraint firstItem="ThB-xJ-6rQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bwK-Br-C9I"/>
+                            <constraint firstItem="Wsi-lg-2ft" firstAttribute="top" secondItem="3OM-8n-ovJ" secondAttribute="bottom" constant="8" id="d6I-tZ-L1w"/>
+                            <constraint firstItem="oxs-g4-A70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dc0-GB-vyE"/>
+                            <constraint firstItem="oxs-g4-A70" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="v83-IP-zn0"/>
+                            <constraint firstItem="ZFQ-Cj-dzl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wnS-Nq-a6S"/>
+                            <constraint firstItem="pO9-Ce-VeJ" firstAttribute="top" secondItem="ThB-xJ-6rQ" secondAttribute="bottom" constant="20" id="yKh-Hv-gCX"/>
+                            <constraint firstItem="ZFQ-Cj-dzl" firstAttribute="top" secondItem="pO9-Ce-VeJ" secondAttribute="bottom" constant="20" id="ziy-q6-rPS"/>
+                            <constraint firstItem="ThB-xJ-6rQ" firstAttribute="top" secondItem="oxs-g4-A70" secondAttribute="bottom" constant="20" id="zrc-3l-38O"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="NKCWeakTimer" id="ocD-rX-ZvH"/>
+                    <connections>
+                        <outlet property="countingLabel" destination="ThB-xJ-6rQ" id="ULP-iH-8xM"/>
+                        <outlet property="messageTextView" destination="pO9-Ce-VeJ" id="G6z-NZ-95I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1256.8" y="967.4662668665668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6ln-DT-dG4">
+            <objects>
+                <navigationController id="Guq-1t-AVd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pOD-RB-hQF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jbl-WD-WEU" kind="relationship" relationship="rootViewController" id="Wnd-dj-CmA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDW-pI-tqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-516" y="970"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="8zu-K1-3Tb">
+            <objects>
+                <viewController id="jbl-WD-WEU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgE-cp-uz6"/>
+                        <viewControllerLayoutGuide type="bottom" id="c1q-xd-rLZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f02-x4-hd5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKe-do-VFz">
+                                <rect key="frame" x="114.5" y="318" width="145" height="30"/>
+                                <state key="normal" title="Push NKCWeakTimer"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="push" id="vu1-Mx-NxT"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check message in console to configure if dealloc called when pop finished." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5u-k7-iEl">
+                                <rect key="frame" x="31" y="257" width="313" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="a5u-k7-iEl" secondAttribute="trailing" constant="15" id="8Fv-gc-4jH"/>
+                            <constraint firstItem="uKe-do-VFz" firstAttribute="centerY" secondItem="f02-x4-hd5" secondAttribute="centerY" id="8St-pH-vUZ"/>
+                            <constraint firstItem="uKe-do-VFz" firstAttribute="top" secondItem="a5u-k7-iEl" secondAttribute="bottom" constant="20" id="asp-6P-Qk2"/>
+                            <constraint firstItem="uKe-do-VFz" firstAttribute="centerX" secondItem="f02-x4-hd5" secondAttribute="centerX" id="e2i-gO-40j"/>
+                            <constraint firstItem="a5u-k7-iEl" firstAttribute="leading" secondItem="f02-x4-hd5" secondAttribute="leadingMargin" constant="15" id="i7W-8Y-ebV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Main" id="KDD-oD-dMK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jeY-an-Bna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="344.80000000000001" y="968.36581709145435"/>
         </scene>
     </scenes>
 </document>

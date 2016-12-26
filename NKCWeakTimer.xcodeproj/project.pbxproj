@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		05B706541E0D55D9002A0F65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B706531E0D55D9002A0F65 /* main.m */; };
 		05B706571E0D55D9002A0F65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B706561E0D55D9002A0F65 /* AppDelegate.m */; };
-		05B7065A1E0D55D9002A0F65 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B706591E0D55D9002A0F65 /* ViewController.m */; };
 		05B7065D1E0D55D9002A0F65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B7065B1E0D55D9002A0F65 /* Main.storyboard */; };
 		05B7065F1E0D55D9002A0F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B7065E1E0D55D9002A0F65 /* Assets.xcassets */; };
 		05B706621E0D55D9002A0F65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B706601E0D55D9002A0F65 /* LaunchScreen.storyboard */; };
 		05B7066C1E0D568E002A0F65 /* NKCWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */; };
+		05F73C331E0EBCCD00152466 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F73C321E0EBCCD00152466 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +21,14 @@
 		05B706531E0D55D9002A0F65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05B706551E0D55D9002A0F65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		05B706561E0D55D9002A0F65 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		05B706581E0D55D9002A0F65 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		05B706591E0D55D9002A0F65 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		05B7065C1E0D55D9002A0F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05B7065E1E0D55D9002A0F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05B706611E0D55D9002A0F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05B706631E0D55D9002A0F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B7066A1E0D568E002A0F65 /* NKCWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCWeakTimer.h; sourceTree = "<group>"; };
 		05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCWeakTimer.m; sourceTree = "<group>"; };
+		05F73C311E0EBCCD00152466 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05F73C321E0EBCCD00152466 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				05B706691E0D565E002A0F65 /* Classes */,
+				05F73C301E0EBC4A00152466 /* Example */,
 				05B706551E0D55D9002A0F65 /* AppDelegate.h */,
 				05B706561E0D55D9002A0F65 /* AppDelegate.m */,
-				05B706581E0D55D9002A0F65 /* ViewController.h */,
-				05B706591E0D55D9002A0F65 /* ViewController.m */,
 				05B7065B1E0D55D9002A0F65 /* Main.storyboard */,
 				05B7065E1E0D55D9002A0F65 /* Assets.xcassets */,
 				05B706601E0D55D9002A0F65 /* LaunchScreen.storyboard */,
@@ -90,6 +89,15 @@
 				05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		05F73C301E0EBC4A00152466 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				05F73C311E0EBCCD00152466 /* ViewController.h */,
+				05F73C321E0EBCCD00152466 /* ViewController.m */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,9 +171,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B7065A1E0D55D9002A0F65 /* ViewController.m in Sources */,
 				05B706571E0D55D9002A0F65 /* AppDelegate.m in Sources */,
 				05B7066C1E0D568E002A0F65 /* NKCWeakTimer.m in Sources */,
+				05F73C331E0EBCCD00152466 /* ViewController.m in Sources */,
 				05B706541E0D55D9002A0F65 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

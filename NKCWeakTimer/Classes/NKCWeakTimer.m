@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, NKCWeakTimerScheduledType) {
 //SEL Property
 @property (nonatomic, weak) id aTarget;
 @property (nonatomic, assign) SEL aSelector;
-@property (nonatomic, strong, readwrite) NSDictionary *userInfo;
+@property (nonatomic, readwrite) id userInfo;
 
 //Block Property
 @property (nonatomic, copy) void (^timeBlock)(NKCWeakTimer *timer);
@@ -59,20 +59,30 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 }
 
 #pragma mark scheduledTimer
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable NSDictionary *)userInfo repeats:(BOOL)repeats {
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats {
     NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKCWeakTimerScheduledTypeSEL fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
     return weakTimer;
 }
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable NSDictionary *)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block {
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block {
     NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKCWeakTimerScheduledTypeBlock fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
     return weakTimer;
 }
 
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
+    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKCWeakTimerScheduledTypeSEL fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
+    return weakTimer;
+}
+
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
+    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKCWeakTimerScheduledTypeBlock fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
+    return weakTimer;
+}
+
 - (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval
-                              target:(nullable id)target
-                            selector:(nullable SEL)selector
-                            userInfo:(nullable NSDictionary *)userInfo
-                               block:(nullable void (^)(NKCWeakTimer *timer))block
+                              target:(id)target
+                            selector:(SEL)selector
+                            userInfo:(nullable id)userInfo
+                               block:(void (^)(NKCWeakTimer *timer))block
                                 type:(NKCWeakTimerScheduledType)scheduledType
                             fireDate:(nullable NSDate *)date
                              repeats:(BOOL)repeats
@@ -88,7 +98,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
     
     self = [super init];
     self.scheduledType = scheduledType;
-    self.timeInterval = timeInterval;
+    self.timeInterval = timeInterval < 0.1 ? 0.1 : timeInterval;
     self.dispatchQueue = dispatchQueue;
     self.repeats = repeats;
     

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  NKCWeakTimer can use as NSTimer, and do not retain Target
+ *  NKCWeakTimer can be used as NSTimer, but do not retain Target
  *  It is implemented by GCD, and all behaves I had considered like NSTimer
  *  NKCWeakTimer reference to MSWeakTimer, addition Block type as implemented on iOS10, thank for them,
  *  MSWeakTimer's github below
@@ -32,7 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param repeats if TRUE, SEL will be invoked on aTarget until timer deallocated or until you call invalidate. If FALSE, it will only be invoked once, Or None if the timer deallocated or you call invalidate before invoked.
  *  @see invalidate.
  */
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats;
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
+                                        target:(id)aTarget selector:(SEL)aSelector
+                                      userInfo:(nullable id)userInfo
+                                       repeats:(BOOL)repeats;
 
 /**
  *  Creates a timer with default parameters, timer schedule and run when finish.
@@ -44,7 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param block NKCWeakTimer do not strong the block, instead copying the block, you should use __weak to ensure the block without strong target.
  *  @see invalidate.
  */
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block;
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
+                                      userInfo:(nullable id)userInfo
+                                       repeats:(BOOL)repeats
+                                         block:(void (^)(NKCWeakTimer *timer))block;
 
 /**
  *  @param dispatchQueue The dispatch_queue_t for the SEL or Block you want to run in.

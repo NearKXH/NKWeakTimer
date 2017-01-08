@@ -4,14 +4,17 @@ NKCWeakTimer
 ## Description
 
 `NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
-`NKCWeakTimer` is implemented by `GCD`, and all behaves I had considered like `NSTimer`.
 
->You can use `NKCWeakTimer` as other Object, strong it, and `NKCWeakTimer` need not to release in the `dealloc` method.
->`NKCWeakTimer` will invoke `invalidate` method when retain count equre to 0, and release itself automatic.
+`NKCWeakTimer` is implemented by `GCD`, and all function I had considered are similar to `NSTimer`.
+
+>You can use `NKCWeakTimer` as normal NSObject, strong it, and `NKCWeakTimer` do not need to release in the `dealloc` method.
+>
+>*`NKCWeakTimer` invoke `invalidate` method when `retainCount` equre to 0, and release itself automatically. Of course, you can invoke `invalidate` method whenever you need.*
 
 ## How to Use
 
-Create an `NKCWeakTimer` object with below class method, `NKCWeakTimer` scheduled automatic. 
+Create an `NKCWeakTimer` object with below class method, `NKCWeakTimer` scheduled automatically. 
+
 Using SEL as below:
 
 ```objc

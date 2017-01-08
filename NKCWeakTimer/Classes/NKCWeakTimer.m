@@ -98,7 +98,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
     
     self = [super init];
     self.scheduledType = scheduledType;
-    self.timeInterval = timeInterval < 0.1 ? 0.1 : timeInterval;
+    self.timeInterval = timeInterval < 0.01 ? 0.1 : timeInterval;
     self.dispatchQueue = dispatchQueue;
     self.repeats = repeats;
     
@@ -117,16 +117,16 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
             break;
     }
     
-    //setup fire time, if the fire date less than timerInterval * 0.1, put away
-    _fireDate = date;
-    if ([date timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] < self.timeInterval * 0.1) {
+    //setup fire time, if the fire date less than 1.0f, put away
+    if (!date || [date timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] < 1.0f) {
         self.firePrivateTimeInterval = 0;
     } else {
+        _fireDate = date;
         self.firePrivateTimeInterval = [date timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
     }
     
     //use the memory as the queue label
-    self.dispatchPrivateSerialQueue = dispatch_queue_create([kNKCWeakTimerDispatchQueueLabel cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKCWeakTimerDispatchQueueLabel copy] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
     //create Dispatch Source
     self.dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
                                                  0,
@@ -229,8 +229,8 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 #pragma mark Property
 - (void)setFireDate:(NSDate *)fireDate {
     @synchronized (self) {
-        _fireDate = fireDate;
-        if (fireDate && [fireDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] > self.timeInterval * 0.1) {
+        if (fireDate && [fireDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] > 1.0f) {
+            _fireDate = fireDate;
             self.firePrivateTimeInterval = [fireDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
             [self invalidate];
             [self setupTimer];
@@ -271,7 +271,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 - (void)setTolerance:(NSTimeInterval)tolerance
 {
     @synchronized(self) {
-        if (tolerance != _tolerance && tolerance >= 0 && tolerance <= self.timeInterval * 0.1f) {
+        if (tolerance != _tolerance && tolerance >= 0 && tolerance < self.timeInterval * 0.5f) {
             _tolerance = tolerance;
             [self invalidate];
             [self setupTimer];
@@ -291,7 +291,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
  *  Ststus in Debug
  */
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"\n<%@ %p> \n\ttime_interval = %f\nisValid = %@",
+    return [NSString stringWithFormat:@"\n<%@ %p> \n\ttime_interval = %f\n\tisValid = %@",
             NSStringFromClass([self class]),
             self,
             self.timeInterval,

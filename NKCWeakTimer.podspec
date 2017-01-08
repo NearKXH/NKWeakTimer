@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 `NKCWeakTimer` is implemented by `GCD`, and all founction as `NSTimer`.
                    DESC
   s.homepage     = "https://github.com/NearKXH/NKCWeakTimer"
-#  s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Near" => "near.kongxh@gmail.com" }
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"

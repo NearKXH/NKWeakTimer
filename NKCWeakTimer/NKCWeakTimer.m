@@ -126,7 +126,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
     }
     
     //use the memory as the queue label
-    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKCWeakTimerDispatchQueueLabel copy] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKCWeakTimerDispatchQueueLabel stringByAppendingString:[NSString stringWithFormat:@"%p", self]] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
     //create Dispatch Source
     self.dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
                                                  0,

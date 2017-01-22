@@ -1,11 +1,13 @@
 NKCWeakTimer
 ===========
 
-## Description
+##[中文版本](https://gitlab.com/iOS-Project/NKCWeakTimer/blob/master/README-Chinese.md).
 
-`NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
+## 概述
 
-`NKCWeakTimer` is implemented by `GCD`, and all function I had considered are similar to `NSTimer`.
+`NKCWeakTimer` 使用方式和 `NSTimer` 一样, 但不会强引用 target。
+
+`NKCWeakTimer` 用 `GCD` 实现, 功能与 `NSTimer` 一致.
 
 >You can use `NKCWeakTimer` as normal NSObject, strong it, and `NKCWeakTimer` do not need to release in the `dealloc` method.
 >

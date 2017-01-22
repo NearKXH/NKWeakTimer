@@ -1,6 +1,8 @@
 NKCWeakTimer
 ===========
 
+## [中文版本](https://github.com/NearKXH/NKCWeakTimer/tree/master/README-Chinese/README-Chinese.md).
+
 ## Description
 
 `NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
@@ -35,6 +37,14 @@ Using Block as below:
 ```
 
 ## Installation
+
+- Using CocoaPods:
+
+Just add this line to your `Podfile`:
+
+```
+pod 'NKCWeakTimer'
+```
 
 - Manually:
 

@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05B706541E0D55D9002A0F65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B706531E0D55D9002A0F65 /* main.m */; };
-		05B706571E0D55D9002A0F65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B706561E0D55D9002A0F65 /* AppDelegate.m */; };
-		05B7065D1E0D55D9002A0F65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B7065B1E0D55D9002A0F65 /* Main.storyboard */; };
-		05B7065F1E0D55D9002A0F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B7065E1E0D55D9002A0F65 /* Assets.xcassets */; };
-		05B706621E0D55D9002A0F65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B706601E0D55D9002A0F65 /* LaunchScreen.storyboard */; };
-		05B7066C1E0D568E002A0F65 /* NKCWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */; };
-		05F73C331E0EBCCD00152466 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F73C321E0EBCCD00152466 /* ViewController.m */; };
+		0563DEB91E3458D00003C733 /* NKCWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DEB81E3458D00003C733 /* NKCWeakTimer.m */; };
+		0563DEDA1E3466460003C733 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DED01E3466460003C733 /* AppDelegate.m */; };
+		0563DEDB1E3466460003C733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0563DED11E3466460003C733 /* Assets.xcassets */; };
+		0563DEDC1E3466460003C733 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0563DED21E3466460003C733 /* LaunchScreen.storyboard */; };
+		0563DEDD1E3466460003C733 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0563DED41E3466460003C733 /* Main.storyboard */; };
+		0563DEDF1E3466460003C733 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DED71E3466460003C733 /* main.m */; };
+		0563DEE01E3466460003C733 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DED91E3466460003C733 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0563DEB71E3458D00003C733 /* NKCWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCWeakTimer.h; sourceTree = "<group>"; };
+		0563DEB81E3458D00003C733 /* NKCWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCWeakTimer.m; sourceTree = "<group>"; };
+		0563DECF1E3466460003C733 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0563DED01E3466460003C733 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0563DED11E3466460003C733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0563DED31E3466460003C733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0563DED51E3466460003C733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0563DED71E3466460003C733 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0563DED81E3466460003C733 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0563DED91E3466460003C733 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0563DEE11E34669E0003C733 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B7064F1E0D55D9002A0F65 /* NKCWeakTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKCWeakTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05B706531E0D55D9002A0F65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		05B706551E0D55D9002A0F65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		05B706561E0D55D9002A0F65 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		05B7065C1E0D55D9002A0F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05B7065E1E0D55D9002A0F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		05B706611E0D55D9002A0F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		05B706631E0D55D9002A0F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05B7066A1E0D568E002A0F65 /* NKCWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCWeakTimer.h; sourceTree = "<group>"; };
-		05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCWeakTimer.m; sourceTree = "<group>"; };
-		05F73C311E0EBCCD00152466 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		05F73C321E0EBCCD00152466 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,10 +42,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0563DEB61E3458D00003C733 /* NKCWeakTimer */ = {
+			isa = PBXGroup;
+			children = (
+				0563DEB71E3458D00003C733 /* NKCWeakTimer.h */,
+				0563DEB81E3458D00003C733 /* NKCWeakTimer.m */,
+			);
+			path = NKCWeakTimer;
+			sourceTree = "<group>";
+		};
+		0563DECE1E3466460003C733 /* NKCWeakTimer-SampleProject */ = {
+			isa = PBXGroup;
+			children = (
+				0563DECF1E3466460003C733 /* AppDelegate.h */,
+				0563DED01E3466460003C733 /* AppDelegate.m */,
+				0563DED81E3466460003C733 /* ViewController.h */,
+				0563DED91E3466460003C733 /* ViewController.m */,
+				0563DED11E3466460003C733 /* Assets.xcassets */,
+				0563DEE31E3466BB0003C733 /* Supporting Files */,
+			);
+			path = "NKCWeakTimer-SampleProject";
+			sourceTree = "<group>";
+		};
+		0563DEE31E3466BB0003C733 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0563DED21E3466460003C733 /* LaunchScreen.storyboard */,
+				0563DED41E3466460003C733 /* Main.storyboard */,
+				0563DEE11E34669E0003C733 /* Info.plist */,
+				0563DED71E3466460003C733 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		05B706461E0D55D9002A0F65 = {
 			isa = PBXGroup;
 			children = (
-				05B706511E0D55D9002A0F65 /* NKCWeakTimer */,
+				0563DEB61E3458D00003C733 /* NKCWeakTimer */,
+				0563DECE1E3466460003C733 /* NKCWeakTimer-SampleProject */,
 				05B706501E0D55D9002A0F65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,48 +90,6 @@
 				05B7064F1E0D55D9002A0F65 /* NKCWeakTimer.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		05B706511E0D55D9002A0F65 /* NKCWeakTimer */ = {
-			isa = PBXGroup;
-			children = (
-				05B706691E0D565E002A0F65 /* Classes */,
-				05F73C301E0EBC4A00152466 /* Example */,
-				05B706551E0D55D9002A0F65 /* AppDelegate.h */,
-				05B706561E0D55D9002A0F65 /* AppDelegate.m */,
-				05B7065B1E0D55D9002A0F65 /* Main.storyboard */,
-				05B7065E1E0D55D9002A0F65 /* Assets.xcassets */,
-				05B706601E0D55D9002A0F65 /* LaunchScreen.storyboard */,
-				05B706631E0D55D9002A0F65 /* Info.plist */,
-				05B706521E0D55D9002A0F65 /* Supporting Files */,
-			);
-			path = NKCWeakTimer;
-			sourceTree = "<group>";
-		};
-		05B706521E0D55D9002A0F65 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				05B706531E0D55D9002A0F65 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		05B706691E0D565E002A0F65 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				05B7066A1E0D568E002A0F65 /* NKCWeakTimer.h */,
-				05B7066B1E0D568E002A0F65 /* NKCWeakTimer.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		05F73C301E0EBC4A00152466 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				05F73C311E0EBCCD00152466 /* ViewController.h */,
-				05F73C321E0EBCCD00152466 /* ViewController.m */,
-			);
-			path = Example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,9 +150,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B706621E0D55D9002A0F65 /* LaunchScreen.storyboard in Resources */,
-				05B7065F1E0D55D9002A0F65 /* Assets.xcassets in Resources */,
-				05B7065D1E0D55D9002A0F65 /* Main.storyboard in Resources */,
+				0563DEDD1E3466460003C733 /* Main.storyboard in Resources */,
+				0563DEDB1E3466460003C733 /* Assets.xcassets in Resources */,
+				0563DEDC1E3466460003C733 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,30 +163,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B706571E0D55D9002A0F65 /* AppDelegate.m in Sources */,
-				05B7066C1E0D568E002A0F65 /* NKCWeakTimer.m in Sources */,
-				05F73C331E0EBCCD00152466 /* ViewController.m in Sources */,
-				05B706541E0D55D9002A0F65 /* main.m in Sources */,
+				0563DEDA1E3466460003C733 /* AppDelegate.m in Sources */,
+				0563DEDF1E3466460003C733 /* main.m in Sources */,
+				0563DEE01E3466460003C733 /* ViewController.m in Sources */,
+				0563DEB91E3458D00003C733 /* NKCWeakTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		05B7065B1E0D55D9002A0F65 /* Main.storyboard */ = {
+		0563DED21E3466460003C733 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				05B7065C1E0D55D9002A0F65 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		05B706601E0D55D9002A0F65 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05B706611E0D55D9002A0F65 /* Base */,
+				0563DED31E3466460003C733 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0563DED41E3466460003C733 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0563DED51E3466460003C733 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -221,6 +213,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -240,7 +233,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -269,6 +262,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -282,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -294,10 +288,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = NKCWeakTimer/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/NKCWeakTimer-SampleProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKCWeakTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,10 +301,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = NKCWeakTimer/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/NKCWeakTimer-SampleProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKCWeakTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

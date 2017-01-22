@@ -1,6 +1,8 @@
 NKCWeakTimer
 ===========
 
+## [中文版本](https://github.com/NearKXH/NKCWeakTimer/tree/master/README-Chinese/README-Chinese.md).
+
 ## Description
 
 `NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.

@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"
   s.source       = { :git => "https://github.com/NearKXH/NKCWeakTimer.git", :tag => s.version.to_s }
-  s.source_files  = "NKCWeakTimer/Classes/**/*"
+  s.source_files  = "NKCWeakTimer/**/*"
   s.requires_arc = true
 end

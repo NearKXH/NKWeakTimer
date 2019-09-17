@@ -1,22 +1,22 @@
 //
-//  NKCWeakTimer.m
-//  NKCWeakTimer
+//  NKWeakTimer.m
+//  NKWeakTimer
 //
 //  Created by Near on 2016/12/23.
 //  Copyright © 2016年 NearKong. All rights reserved.
 //
 
-#import "NKCWeakTimer.h"
+#import "NKWeakTimer.h"
 
-typedef NS_ENUM(NSUInteger, NKCWeakTimerScheduledType) {
-    NKCWeakTimerScheduledTypeSEL,
-    NKCWeakTimerScheduledTypeBlock,
+typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
+    NKWeakTimerScheduledTypeSEL,
+    NKWeakTimerScheduledTypeBlock,
 };
 
-@interface NKCWeakTimer ()
+@interface NKWeakTimer ()
 #pragma mark interface
 //Time type, Block or SEL
-@property (nonatomic) NKCWeakTimerScheduledType scheduledType;
+@property (nonatomic) NKWeakTimerScheduledType scheduledType;
 @property (nonatomic, readwrite) NSTimeInterval timeInterval;
 @property (nonatomic) BOOL repeats;
 
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, NKCWeakTimerScheduledType) {
 @property (nonatomic, readwrite) id userInfo;
 
 //Block Property
-@property (nonatomic, copy) void (^timeBlock)(NKCWeakTimer *timer);
+@property (nonatomic, copy) void (^timeBlock)(NKWeakTimer *timer);
 
 @property (readwrite, getter=isValid) BOOL valid;
 
@@ -45,8 +45,8 @@ typedef NS_ENUM(NSUInteger, NKCWeakTimerScheduledType) {
 
 @end
 
-@implementation NKCWeakTimer
-static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near.kWeakTimer";
+@implementation NKWeakTimer
+static NSString *const kNKWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near.kWeakTimer";
 
 @synthesize tolerance = _tolerance;
 @synthesize canImplement = _canImplement;
@@ -55,26 +55,26 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 
 - (void)dealloc {
     [self invalidate];
-    NSLog(@"-- dealloc -- NKCWeakTimer --");
+    NSLog(@"-- dealloc -- NKWeakTimer --");
 }
 
 #pragma mark scheduledTimer
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats {
-    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKCWeakTimerScheduledTypeSEL fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
+    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKWeakTimerScheduledTypeSEL fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
     return weakTimer;
 }
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block {
-    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKCWeakTimerScheduledTypeBlock fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKWeakTimer *timer))block {
+    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKWeakTimerScheduledTypeBlock fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
     return weakTimer;
 }
 
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
-    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKCWeakTimerScheduledTypeSEL fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
+    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKWeakTimerScheduledTypeSEL fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
     return weakTimer;
 }
 
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKCWeakTimer *timer))block fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
-    NKCWeakTimer *weakTimer = [[NKCWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKCWeakTimerScheduledTypeBlock fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKWeakTimer *timer))block fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
+    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKWeakTimerScheduledTypeBlock fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
     return weakTimer;
 }
 
@@ -82,16 +82,16 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
                               target:(id)target
                             selector:(SEL)selector
                             userInfo:(nullable id)userInfo
-                               block:(void (^)(NKCWeakTimer *timer))block
-                                type:(NKCWeakTimerScheduledType)scheduledType
+                               block:(void (^)(NKWeakTimer *timer))block
+                                type:(NKWeakTimerScheduledType)scheduledType
                             fireDate:(nullable NSDate *)date
                              repeats:(BOOL)repeats
                        dispatchQueue:(dispatch_queue_t)dispatchQueue {
     
-    if (scheduledType == NKCWeakTimerScheduledTypeSEL) {
+    if (scheduledType == NKWeakTimerScheduledTypeSEL) {
         NSParameterAssert(target);
         NSParameterAssert(selector);
-    } else if (scheduledType == NKCWeakTimerScheduledTypeBlock) {
+    } else if (scheduledType == NKWeakTimerScheduledTypeBlock) {
         NSParameterAssert(block);
     }
     NSParameterAssert(dispatchQueue);
@@ -105,13 +105,13 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
     _canImplement = true;
     _valid = false;
     switch (scheduledType) {
-        case NKCWeakTimerScheduledTypeSEL:
+        case NKWeakTimerScheduledTypeSEL:
             self.aTarget = target;
             self.aSelector = selector;
             self.userInfo = userInfo;
             break;
             
-        case NKCWeakTimerScheduledTypeBlock:
+        case NKWeakTimerScheduledTypeBlock:
             self.timeBlock = block;
             self.userInfo = userInfo;
             break;
@@ -126,7 +126,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
     }
     
     //use the memory as the queue label
-    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKCWeakTimerDispatchQueueLabel stringByAppendingString:[NSString stringWithFormat:@"%p", self]] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKWeakTimerDispatchQueueLabel stringByAppendingString:[NSString stringWithFormat:@"%p", self]] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
     //create Dispatch Source
     self.dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
                                                  0,
@@ -146,12 +146,12 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
                               );
     self.firePrivateTimeInterval = 0;
     
-    __weak NKCWeakTimer *weakSelf = self;
-    if (self.scheduledType == NKCWeakTimerScheduledTypeSEL) {
+    __weak NKWeakTimer *weakSelf = self;
+    if (self.scheduledType == NKWeakTimerScheduledTypeSEL) {
         dispatch_source_set_event_handler(self.dispatchSource, ^{
             [weakSelf fireSEL];
         });
-    } else if (self.scheduledType == NKCWeakTimerScheduledTypeBlock) {
+    } else if (self.scheduledType == NKWeakTimerScheduledTypeBlock) {
         dispatch_source_set_event_handler(self.dispatchSource, ^{
             [weakSelf fireBlock];
         });
@@ -174,8 +174,8 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 
 #pragma mark Fire
 - (void)fire {
-    __weak NKCWeakTimer *weakSelf = self;
-    if (self.scheduledType == NKCWeakTimerScheduledTypeSEL) {
+    __weak NKWeakTimer *weakSelf = self;
+    if (self.scheduledType == NKWeakTimerScheduledTypeSEL) {
         dispatch_async(self.dispatchQueue, ^{
             weakSelf.canImplement = false;
 #pragma clang diagnostic push
@@ -184,7 +184,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 #pragma clang diagnostic pop
             weakSelf.canImplement = true;
         });
-    } else if (self.scheduledType == NKCWeakTimerScheduledTypeBlock) {
+    } else if (self.scheduledType == NKWeakTimerScheduledTypeBlock) {
         dispatch_async(self.dispatchQueue, ^{
             weakSelf.canImplement = false;
             weakSelf.timeBlock(weakSelf);
@@ -196,7 +196,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 - (void)fireBlock {
     if (self.canImplement) {
         self.canImplement = false;
-        __weak NKCWeakTimer *weakSelf = self;
+        __weak NKWeakTimer *weakSelf = self;
         dispatch_async(self.dispatchQueue, ^{
             weakSelf.timeBlock(weakSelf);
             weakSelf.canImplement = true;
@@ -211,7 +211,7 @@ static NSString *const kNKCWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near
 - (void)fireSEL {
     if (self.canImplement) {
         self.canImplement = false;
-        __weak NKCWeakTimer *weakSelf = self;
+        __weak NKWeakTimer *weakSelf = self;
         dispatch_async(self.dispatchQueue, ^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"

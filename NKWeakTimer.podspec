@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name         = "NKCWeakTimer"
-  s.version      = "0.0.3"
+  s.name         = "NKWeakTimer"
+  s.version      = "1.0.0"
   s.summary      = "A delightful iOS and OS X Weak Timer."
   s.description  = <<-DESC
 `NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/NearKXH/NKCWeakTimer.git", :tag => s.version.to_s }
   s.source_files  = "NKCWeakTimer/**/*"
   s.requires_arc = true
+
 end

@@ -29,8 +29,9 @@ extern CGFloat NKWeakTimerMinimumInterval;  // 0.01f
  *  @note You must make sure aTarget and aSelector is not nil, otherwise throwing error by NSParameterAssert.
  *  SEL well be invoked in dispatch_get_main_queue(), tolerance is set as interval * NKWeakTimerToleranceRate
  *
- *  @param interval the seconds between firing. Interval set to NKWeakTimerMinimumInterval if it is less than NKWeakTimerMinimumInterval. SEL will be invoked, approximately `timeInterval` seconds from the time you call this method.
- *  @param repeats if TRUE, SEL will be invoked on aTarget until timer deallocated or invalidate called. If FALSE, it will only be invoked once, or None if the timer deallocated or invalidate called before invoked.
+ *  @param interval  The number of seconds between firings of the timer. If it is less than NKWeakTimerMinimumInterval, this method chooses the nonnegative value of NKWeakTimerMinimumInterval seconds instead. SEL will be invoked, approximately `timeInterval` seconds from this method called.
+ *  @param repeats If TRUE, SEL will be invoked on aTarget until timer deallocated or invalidated. If FALSE, it will be invalidated after it fires.
+ *
  *  @see invalidate.
  */
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
@@ -47,9 +48,10 @@ extern CGFloat NKWeakTimerMinimumInterval;  // 0.01f
  *  @note You must make sure block is not nil, otherwise throwing error by NSParameterAssert
  *  Block well be invoked in dispatch_get_main_queue(), tolerance is set as interval * NKWeakTimerToleranceRate
  *
- *  @param interval the seconds between firing. Interval set to NKWeakTimerMinimumInterval if it is less than NKWeakTimerMinimumInterval. Block will be invoked, approximately `timeInterval` seconds from the time you call this method.
- *  @param repeats if TRUE, SEL will be invoked on aTarget until timer deallocated or until you call invalidate. If FALSE, it will only be invoked once, Or None if the timer deallocated or you call invalidate before invoked.
+ *  @param interval  The number of seconds between firings of the timer. If it is less than NKWeakTimerMinimumInterval, this method chooses the nonnegative value of NKWeakTimerMinimumInterval seconds instead. Block will be invoked, approximately `timeInterval` seconds from the time you call this method.
+ *  @param repeats  If TRUE, SEL will be invoked on aTarget until timer deallocated or invalidated. If FALSE, it will be invalidated after it fires.
  *  @param block NKWeakTimer do not retain the block, instead copying the block, you should use __weak to ensure the block without strong target.
+ *
  *  @see invalidate.
  */
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
@@ -59,14 +61,28 @@ extern CGFloat NKWeakTimerMinimumInterval;  // 0.01f
 
 
 /**
- *  Timer schedule and run as soon as finished.
+ *  Creates a timer with default parameters, timer schedule and run when finished.
+ *
+ *  @note It's safe to retain the return timer.
  *
  *  @param fireDate a further fire time, now if nil.
  *  @param dispatchQueue The dispatch_queue_t for the SEL or Block to run in.
  *  @note dispatchQueue must not be nil, otherwise throwing error by NSParameterAssert
+ *
  */
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue;
 
+
+/**
+ *  Creates a timer with default parameters, timer schedule and run when finished.
+ *
+ *  @note It's safe to retain the return timer.
+ *
+ *  @param fireDate a further fire time, now if nil.
+ *  @param dispatchQueue The dispatch_queue_t for the SEL or Block to run in.
+ *  @note dispatchQueue must not be nil, otherwise throwing error by NSParameterAssert
+ *
+ */
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue block:(void (^)(NKWeakTimer *timer))block;
 
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0563DEB91E3458D00003C733 /* NKCWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DEB81E3458D00003C733 /* NKCWeakTimer.m */; };
+		0563DEB91E3458D00003C733 /* NKWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DEB81E3458D00003C733 /* NKWeakTimer.m */; };
 		0563DEDA1E3466460003C733 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0563DED01E3466460003C733 /* AppDelegate.m */; };
 		0563DEDB1E3466460003C733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0563DED11E3466460003C733 /* Assets.xcassets */; };
 		0563DEDC1E3466460003C733 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0563DED21E3466460003C733 /* LaunchScreen.storyboard */; };
@@ -17,8 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0563DEB71E3458D00003C733 /* NKCWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKCWeakTimer.h; sourceTree = "<group>"; };
-		0563DEB81E3458D00003C733 /* NKCWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKCWeakTimer.m; sourceTree = "<group>"; };
+		0563DEB71E3458D00003C733 /* NKWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKWeakTimer.h; sourceTree = "<group>"; };
+		0563DEB81E3458D00003C733 /* NKWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKWeakTimer.m; sourceTree = "<group>"; };
 		0563DECF1E3466460003C733 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0563DED01E3466460003C733 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0563DED11E3466460003C733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,7 +28,7 @@
 		0563DED81E3466460003C733 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0563DED91E3466460003C733 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0563DEE11E34669E0003C733 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05B7064F1E0D55D9002A0F65 /* NKCWeakTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKCWeakTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05B7064F1E0D55D9002A0F65 /* NKWeakTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKWeakTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,16 +42,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0563DEB61E3458D00003C733 /* NKCWeakTimer */ = {
+		0563DEB61E3458D00003C733 /* NKWeakTimer */ = {
 			isa = PBXGroup;
 			children = (
-				0563DEB71E3458D00003C733 /* NKCWeakTimer.h */,
-				0563DEB81E3458D00003C733 /* NKCWeakTimer.m */,
+				0563DEB71E3458D00003C733 /* NKWeakTimer.h */,
+				0563DEB81E3458D00003C733 /* NKWeakTimer.m */,
 			);
-			path = NKCWeakTimer;
+			path = NKWeakTimer;
 			sourceTree = "<group>";
 		};
-		0563DECE1E3466460003C733 /* NKCWeakTimer-SampleProject */ = {
+		0563DECE1E3466460003C733 /* NKWeakTimer-SampleProject */ = {
 			isa = PBXGroup;
 			children = (
 				0563DECF1E3466460003C733 /* AppDelegate.h */,
@@ -61,7 +61,7 @@
 				0563DED11E3466460003C733 /* Assets.xcassets */,
 				0563DEE31E3466BB0003C733 /* Supporting Files */,
 			);
-			path = "NKCWeakTimer-SampleProject";
+			path = "NKWeakTimer-SampleProject";
 			sourceTree = "<group>";
 		};
 		0563DEE31E3466BB0003C733 /* Supporting Files */ = {
@@ -78,8 +78,8 @@
 		05B706461E0D55D9002A0F65 = {
 			isa = PBXGroup;
 			children = (
-				0563DEB61E3458D00003C733 /* NKCWeakTimer */,
-				0563DECE1E3466460003C733 /* NKCWeakTimer-SampleProject */,
+				0563DEB61E3458D00003C733 /* NKWeakTimer */,
+				0563DECE1E3466460003C733 /* NKWeakTimer-SampleProject */,
 				05B706501E0D55D9002A0F65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 		05B706501E0D55D9002A0F65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				05B7064F1E0D55D9002A0F65 /* NKCWeakTimer.app */,
+				05B7064F1E0D55D9002A0F65 /* NKWeakTimer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05B7064E1E0D55D9002A0F65 /* NKCWeakTimer */ = {
+		05B7064E1E0D55D9002A0F65 /* NKWeakTimer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05B706661E0D55D9002A0F65 /* Build configuration list for PBXNativeTarget "NKCWeakTimer" */;
+			buildConfigurationList = 05B706661E0D55D9002A0F65 /* Build configuration list for PBXNativeTarget "NKWeakTimer" */;
 			buildPhases = (
 				05B7064B1E0D55D9002A0F65 /* Sources */,
 				05B7064C1E0D55D9002A0F65 /* Frameworks */,
@@ -107,9 +107,9 @@
 			);
 			dependencies = (
 			);
-			name = NKCWeakTimer;
+			name = NKWeakTimer;
 			productName = NKCWeakTimer;
-			productReference = 05B7064F1E0D55D9002A0F65 /* NKCWeakTimer.app */;
+			productReference = 05B7064F1E0D55D9002A0F65 /* NKWeakTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,7 +118,7 @@
 		05B706471E0D55D9002A0F65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = NearKong;
 				TargetAttributes = {
 					05B7064E1E0D55D9002A0F65 = {
@@ -127,9 +127,9 @@
 					};
 				};
 			};
-			buildConfigurationList = 05B7064A1E0D55D9002A0F65 /* Build configuration list for PBXProject "NKCWeakTimer" */;
+			buildConfigurationList = 05B7064A1E0D55D9002A0F65 /* Build configuration list for PBXProject "NKWeakTimer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -140,7 +140,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				05B7064E1E0D55D9002A0F65 /* NKCWeakTimer */,
+				05B7064E1E0D55D9002A0F65 /* NKWeakTimer */,
 			);
 		};
 /* End PBXProject section */
@@ -166,7 +166,7 @@
 				0563DEDA1E3466460003C733 /* AppDelegate.m in Sources */,
 				0563DEDF1E3466460003C733 /* main.m in Sources */,
 				0563DEE01E3466460003C733 /* ViewController.m in Sources */,
-				0563DEB91E3458D00003C733 /* NKCWeakTimer.m in Sources */,
+				0563DEB91E3458D00003C733 /* NKWeakTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,20 +196,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -245,20 +254,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -289,9 +307,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/NKCWeakTimer-SampleProject/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NKWeakTimer-SampleProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKCWeakTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKWeakTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -302,9 +320,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/NKCWeakTimer-SampleProject/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NKWeakTimer-SampleProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKCWeakTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kongxh.near.NKWeakTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -313,7 +331,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05B7064A1E0D55D9002A0F65 /* Build configuration list for PBXProject "NKCWeakTimer" */ = {
+		05B7064A1E0D55D9002A0F65 /* Build configuration list for PBXProject "NKWeakTimer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05B706641E0D55D9002A0F65 /* Debug */,
@@ -322,7 +340,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05B706661E0D55D9002A0F65 /* Build configuration list for PBXNativeTarget "NKCWeakTimer" */ = {
+		05B706661E0D55D9002A0F65 /* Build configuration list for PBXNativeTarget "NKWeakTimer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05B706671E0D55D9002A0F65 /* Debug */,

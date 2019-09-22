@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Guq-1t-AVd">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Guq-1t-AVd">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--NKCWeakTimer-->
+        <!--NKWeakTimer-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -19,44 +14,44 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxs-g4-A70">
-                                <rect key="frame" x="164" y="96" width="46.5" height="21"/>
+                                <rect key="frame" x="277" y="102" width="46.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsi-lg-2ft">
-                                <rect key="frame" x="171.5" y="565" width="32" height="30"/>
+                                <rect key="frame" x="284" y="498" width="32" height="30"/>
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stopAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="021-8p-ouz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFQ-Cj-dzl">
-                                <rect key="frame" x="148" y="489" width="78" height="30"/>
+                                <rect key="frame" x="261.5" y="422" width="77" height="30"/>
                                 <state key="normal" title="Start Timer"/>
                                 <connections>
                                     <action selector="startTimerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eST-UM-rkE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-xJ-6rQ">
-                                <rect key="frame" x="168" y="137" width="39" height="76.5"/>
+                                <rect key="frame" x="280.5" y="143" width="39" height="76.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OM-8n-ovJ">
-                                <rect key="frame" x="172" y="527" width="30" height="30"/>
+                                <rect key="frame" x="285" y="460" width="30" height="30"/>
                                 <state key="normal" title="Fire"/>
                                 <connections>
                                     <action selector="fireAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8bC-VV-QPe"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pO9-Ce-VeJ">
-                                <rect key="frame" x="31" y="233.5" width="313" height="235.5"/>
+                                <rect key="frame" x="35" y="239.5" width="530" height="162.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -80,7 +75,7 @@
                             <constraint firstItem="ThB-xJ-6rQ" firstAttribute="top" secondItem="oxs-g4-A70" secondAttribute="bottom" constant="20" id="zrc-3l-38O"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NKCWeakTimer" id="ocD-rX-ZvH"/>
+                    <navigationItem key="navigationItem" title="NKWeakTimer" id="ocD-rX-ZvH"/>
                     <connections>
                         <outlet property="countingLabel" destination="ThB-xJ-6rQ" id="ULP-iH-8xM"/>
                         <outlet property="messageTextView" destination="pO9-Ce-VeJ" id="G6z-NZ-95I"/>
@@ -115,18 +110,18 @@
                         <viewControllerLayoutGuide type="bottom" id="c1q-xd-rLZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f02-x4-hd5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKe-do-VFz">
-                                <rect key="frame" x="114.5" y="318" width="145" height="30"/>
-                                <state key="normal" title="Push NKCWeakTimer"/>
+                                <rect key="frame" x="232.5" y="285" width="135" height="30"/>
+                                <state key="normal" title="Push NKWeakTimer"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="vu1-Mx-NxT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check message in console to configure if dealloc called when pop finished." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5u-k7-iEl">
-                                <rect key="frame" x="31" y="257" width="313" height="41"/>
+                                <rect key="frame" x="35" y="224" width="530" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

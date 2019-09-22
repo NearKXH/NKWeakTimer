@@ -1,23 +1,23 @@
-NKCWeakTimer
+NKWeakTimer
 ===========
 
-## [中文版本](https://github.com/NearKXH/NKCWeakTimer/tree/master/README-Chinese/README-Chinese.md).
+
 
 ## Description
 
-`NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
+`NKWeakTimer` can be used as `NSTimer`, but do not retain target. So target can retain it as normal object and set  property by `strong`. `NKWeakTimer` is implemented by `GCD`, and all features are similar to `NSTimer`.
 
-`NKCWeakTimer` is implemented by `GCD`, and all function I had considered are similar to `NSTimer`.
+- `NKWeakTimer` retains itself when scheduled, but do not ratain `target`. Retain circle will be broken after `invalidate` called or is not repeatable. 
+- `NKWeakTimer` invokes `invalidate` method automatically when released.
+- `NKWeakTimer` , which is repeatable, releases itself automatically when target released if it is scheduled by `SEL`. So target do not need to call `invalidate` on `dealloc`. But `invalidate` must be called on `dealloc` when target released if it is scheduled by `Block`. 
 
->You can use `NKCWeakTimer` as normal NSObject, strong it, and `NKCWeakTimer` do not need to release in the `dealloc` method.
->
->*`NKCWeakTimer` invoke `invalidate` method when `retainCount` equre to 0, and release itself automatically. Of course, you can invoke `invalidate` method whenever you need.*
+#####[中文说明](https://github.com/NearKXH/NKWeakTimer/tree/master/README-Chinese/README-Chinese.md).
 
 ## How to Use
 
-Create an `NKCWeakTimer` object with below class method, `NKCWeakTimer` scheduled automatically. 
+####Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the main thread.
 
-Using SEL as below:
+- Using SEL as below:
 
 ```objc
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
@@ -27,30 +27,41 @@ Using SEL as below:
                                        repeats:(BOOL)repeats;
 ```
 
-Using Block as below:
+- Using Block as below:
 
 ```objc
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                       userInfo:(nullable id)userInfo
                                        repeats:(BOOL)repeats
-                                         block:(void (^)(NKCWeakTimer *timer))block;
+                                         block:(void (^)(NKWeakTimer *timer))block;
 ```
 
-## Installation
+####Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the specified queue.
+
+```objc
++ (instancetype)scheduledTimerWithFireDate:(nullable NSDate *)fireDate timeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats dispatchQueue:(dispatch_queue_t)dispatchQueue;
+
++ (instancetype)scheduledTimerWithFireDate:(nullable NSDate *)fireDate timeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats dispatchQueue:(dispatch_queue_t)dispatchQueue block:(void (^)(NKWeakTimer *timer))block;
+```
+
+### Installation
 
 - Using CocoaPods:
 
 Just add this line to your `Podfile`:
 
 ```
-pod 'NKCWeakTimer'
+pod 'NKWeakTimer'
 ```
 
 - Manually:
 
-Simply add the files `NKCWeakTimer.h` and `NKCWeakTimer.m` to your project.
+Simply add the files `NKWeakTimer.h` and `NKWeakTimer.m` to project.
 
-## Compatibility
+### Compatibility
 
-- Requires ARC. If you want to use it in a project without ARC, mark ```NKCWeakTimer``` with the linker flag ```-fobjc-arc```.
 - Supports iOS iOS8+ and Mac OSX 10.10+.
+- Requires ARC. If you want to use it in a project without ARC, mark `NKWeakTimer.m` with the linker flag `-fobjc-arc`.
+
+### License
+This project is used under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT</a> license agreement. For more information, see <a href="https://github.com/NearKXH/NKWeakTimer/blob/master/LICENSE">LICENSE</a>.

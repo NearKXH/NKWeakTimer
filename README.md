@@ -11,11 +11,11 @@ NKWeakTimer
 - `NKWeakTimer` invokes `invalidate` method automatically when released.
 - `NKWeakTimer` , which is repeatable, releases itself automatically when target released if it is scheduled by `SEL`. So target do not need to call `invalidate` on `dealloc`. But `invalidate` must be called on `dealloc` when target released if it is scheduled by `Block`. 
 
-#####[中文说明](https://github.com/NearKXH/NKWeakTimer/tree/master/README-Chinese/README-Chinese.md).
+##### [中文说明](https://github.com/NearKXH/NKWeakTimer/tree/master/README-Chinese/README-Chinese.md)
 
 ## How to Use
 
-####Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the main thread.
+#### Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the main thread.
 
 - Using SEL as below:
 
@@ -36,7 +36,7 @@ NKWeakTimer
                                          block:(void (^)(NKWeakTimer *timer))block;
 ```
 
-####Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the specified queue.
+#### Creates and returns a new `NKWeakTimer` object initialized, and schedules it on the specified queue.
 
 ```objc
 + (instancetype)scheduledTimerWithFireDate:(nullable NSDate *)fireDate timeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats dispatchQueue:(dispatch_queue_t)dispatchQueue;

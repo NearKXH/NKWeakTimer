@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  NKCWeakTimer
+//  NKWeakTimer
 //
 //  Created by Near on 2016/12/23.
 //  Copyright © 2016年 NearKong. All rights reserved.
@@ -8,14 +8,14 @@
 
 #import "ViewController.h"
 
-#import "NKCWeakTimer.h"
+#import "NKWeakTimer.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *countingLabel;
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 
 @property  NSInteger count;
-@property (nonatomic, strong) NKCWeakTimer *weakTimer;
+@property (nonatomic, strong) NKWeakTimer *weakTimer;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
@@ -33,7 +33,7 @@
     self.count = 0;
     self.messageTextView.text = @"";
     __weak ViewController *weakSelf = self;
-    self.weakTimer = [NKCWeakTimer scheduledTimerWithTimeInterval:1.0f userInfo:nil repeats:TRUE block:^(NKCWeakTimer * _Nonnull timer) {
+    self.weakTimer = [NKWeakTimer scheduledTimerWithTimeInterval:1.0f userInfo:nil repeats:TRUE block:^(NKWeakTimer * _Nonnull timer) {
         weakSelf.count++;
         NSString *dateString = [weakSelf.dateFormatter stringFromDate:[NSDate date]];
         weakSelf.messageTextView.text = [NSString stringWithFormat:@"count = %ld, fireTime = %@\n%@", weakSelf.count, dateString, weakSelf.messageTextView.text];

@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name         = "NKCWeakTimer"
-  s.version      = "0.0.3"
+  s.name         = "NKWeakTimer"
+  s.version      = "1.0.0"
   s.summary      = "A delightful iOS and OS X Weak Timer."
   s.description  = <<-DESC
-`NKCWeakTimer` can be used as `NSTimer`, but do not retain Target.
-`NKCWeakTimer` is implemented by `GCD`, and all founction as `NSTimer`.
+	NKCWeakTimer can be used as `NSTimer`, but do not retain Target.
+	It is implemented by `GCD`, and all features is similar to NSTimer.
                    DESC
   s.homepage     = "https://github.com/NearKXH/NKCWeakTimer"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/NearKXH/NKCWeakTimer.git", :tag => s.version.to_s }
   s.source_files  = "NKCWeakTimer/**/*"
   s.requires_arc = true
+
 end

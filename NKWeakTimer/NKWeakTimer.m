@@ -8,10 +8,16 @@
 
 #import "NKWeakTimer.h"
 
+
 typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
     NKWeakTimerScheduledTypeSEL,
     NKWeakTimerScheduledTypeBlock,
 };
+
+
+CGFloat const NKWeakTimerMinimumInterval = 0.01f;
+CGFloat const NKWeakTimerToleranceRate = 0.1f;
+
 
 @interface NKWeakTimer ()
 #pragma mark interface
@@ -19,6 +25,9 @@ typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
 @property (nonatomic) NKWeakTimerScheduledType scheduledType;
 @property (nonatomic, readwrite) NSTimeInterval timeInterval;
 @property (nonatomic) BOOL repeats;
+
+@property (nonatomic, readwrite) NSTimeInterval tolerance;
+@property (nonatomic, readwrite, getter=isValid) BOOL valid;
 
 //SEL Property
 @property (nonatomic, weak) id aTarget;
@@ -28,12 +37,8 @@ typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
 //Block Property
 @property (nonatomic, copy) void (^timeBlock)(NKWeakTimer *timer);
 
-@property (readwrite, getter=isValid) BOOL valid;
 
 #pragma mark Private
-//fire time
-@property (nonatomic, assign) NSTimeInterval firePrivateTimeInterval;
-
 //queue of timer implement
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 //timer source
@@ -46,34 +51,28 @@ typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
 @end
 
 @implementation NKWeakTimer
-static NSString *const kNKWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near.kWeakTimer";
-
-@synthesize tolerance = _tolerance;
-@synthesize canImplement = _canImplement;
-@synthesize valid = _valid;
 @synthesize fireDate = _fireDate;
 
 - (void)dealloc {
     [self invalidate];
-    NSLog(@"-- dealloc -- NKWeakTimer --");
+    NSLog(@"__dealloc__%@<%p>__", self.class, self);
 }
 
 #pragma mark scheduledTimer
 + (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats {
-    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKWeakTimerScheduledTypeSEL fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
-    return weakTimer;
-}
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKWeakTimer *timer))block {
-    NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKWeakTimerScheduledTypeBlock fireDate:nil repeats:repeats dispatchQueue:dispatch_get_main_queue()];
-    return weakTimer;
+    return [self scheduledTimerWithFireDate:nil timeInterval:interval target:aTarget selector:aSelector userInfo:userInfo repeats:repeats dispatchQueue:dispatch_get_main_queue()];
 }
 
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeats fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKWeakTimer *timer))block {
+    return [self scheduledTimerWithFireDate:nil timeInterval:interval userInfo:userInfo repeats:repeats dispatchQueue:dispatch_get_main_queue() block:block];
+}
+
++(instancetype)scheduledTimerWithFireDate:(NSDate *)fireDate timeInterval:(NSTimeInterval)interval target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)repeats dispatchQueue:(dispatch_queue_t)dispatchQueue {
     NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:aTarget selector:aSelector userInfo:userInfo block:nil type:NKWeakTimerScheduledTypeSEL fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
     return weakTimer;
 }
 
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval userInfo:(nullable id)userInfo repeats:(BOOL)repeats block:(void (^)(NKWeakTimer *timer))block fireDate:(nullable NSDate *)fireDate dispatchQueue:(dispatch_queue_t)dispatchQueue {
++(instancetype)scheduledTimerWithFireDate:(NSDate *)fireDate timeInterval:(NSTimeInterval)interval userInfo:(id)userInfo repeats:(BOOL)repeats dispatchQueue:(dispatch_queue_t)dispatchQueue block:(void (^)(NKWeakTimer * _Nonnull))block {
     NKWeakTimer *weakTimer = [[NKWeakTimer alloc] initWithTimeInterval:interval target:nil selector:nil userInfo:userInfo block:block type:NKWeakTimerScheduledTypeBlock fireDate:fireDate repeats:repeats dispatchQueue:dispatchQueue];
     return weakTimer;
 }
@@ -98,142 +97,155 @@ static NSString *const kNKWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near.
     
     self = [super init];
     self.scheduledType = scheduledType;
-    self.timeInterval = timeInterval < 0.01 ? 0.1 : timeInterval;
+    self.timeInterval = MAX(NKWeakTimerMinimumInterval, timeInterval);
     self.dispatchQueue = dispatchQueue;
     self.repeats = repeats;
+    self.userInfo = userInfo;
     
-    _canImplement = true;
-    _valid = false;
     switch (scheduledType) {
         case NKWeakTimerScheduledTypeSEL:
             self.aTarget = target;
             self.aSelector = selector;
-            self.userInfo = userInfo;
             break;
             
         case NKWeakTimerScheduledTypeBlock:
             self.timeBlock = block;
-            self.userInfo = userInfo;
             break;
     }
     
     //setup fire time, if the fire date less than 1.0f, put away
-    if (!date || [date timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] < 1.0f) {
-        self.firePrivateTimeInterval = 0;
-    } else {
-        _fireDate = date;
-        self.firePrivateTimeInterval = [date timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+    _fireDate = date;
+    NSTimeInterval fileTime = 0;
+    if (date && [date timeIntervalSinceReferenceDate] - [NSDate timeIntervalSinceReferenceDate] > NKWeakTimerMinimumInterval) {
+        fileTime = [date timeIntervalSinceReferenceDate] - [NSDate timeIntervalSinceReferenceDate];
     }
     
     //use the memory as the queue label
-    self.dispatchPrivateSerialQueue = dispatch_queue_create([[kNKWeakTimerDispatchQueueLabel stringByAppendingString:[NSString stringWithFormat:@"%p", self]] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+    self.dispatchPrivateSerialQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.kong.nate.weakTimer<%p>", self] cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
+    
+    _tolerance = MIN(self.timeInterval * NKWeakTimerToleranceRate, NKWeakTimerMinimumInterval);
+    
+    [self setupTimerWithFireDate:fileTime];
+    
+    return self;
+}
+
+- (void)setupTimerWithFireDate:(NSTimeInterval)fireDate {
     //create Dispatch Source
     self.dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
                                                  0,
                                                  0,
                                                  self.dispatchPrivateSerialQueue);
     
-    _tolerance = self.timeInterval * 0.1;
-    [self setupTimer];
-    return self;
-}
-
-- (void)setupTimer {
     dispatch_source_set_timer(self.dispatchSource,
-                              dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval + self.firePrivateTimeInterval) * NSEC_PER_SEC),
+                              dispatch_time(DISPATCH_TIME_NOW, (fireDate < NKWeakTimerMinimumInterval ? self.timeInterval : fireDate) * NSEC_PER_SEC),
                               (uint64_t)self.timeInterval * NSEC_PER_SEC,
                               (uint64_t)self.tolerance * NSEC_PER_SEC
                               );
-    self.firePrivateTimeInterval = 0;
     
-    __weak NKWeakTimer *weakSelf = self;
-    if (self.scheduledType == NKWeakTimerScheduledTypeSEL) {
-        dispatch_source_set_event_handler(self.dispatchSource, ^{
-            [weakSelf fireSEL];
-        });
-    } else if (self.scheduledType == NKWeakTimerScheduledTypeBlock) {
-        dispatch_source_set_event_handler(self.dispatchSource, ^{
-            [weakSelf fireBlock];
-        });
+    switch (self.scheduledType) {
+        case NKWeakTimerScheduledTypeSEL: {
+            dispatch_source_set_event_handler(self.dispatchSource, ^{
+                [self fireSEL];
+            });
+        }
+            break;
+            
+        case NKWeakTimerScheduledTypeBlock: {
+            dispatch_source_set_event_handler(self.dispatchSource, ^{
+                [self fireBlock];
+            });
+        }
+            break;
     }
+    
+    self.canImplement = true;
     self.valid = true;
     dispatch_resume(self.dispatchSource);
 }
 
+
+#pragma mark Fire
+- (void)fire {
+    switch (_scheduledType) {
+        case NKWeakTimerScheduledTypeSEL:
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self.aTarget performSelector:self.aSelector withObject:self];
+#pragma clang diagnostic pop
+            break;
+            
+        case NKWeakTimerScheduledTypeBlock:
+            self.timeBlock(self);
+            break;
+    }
+}
+
+- (void)fireBlock {
+    if (_canImplement) {
+        _canImplement = false;
+        __weak NKWeakTimer *weakSelf = self;
+        dispatch_async(self.dispatchQueue, ^{
+            __strong NKWeakTimer *strongSelf = weakSelf;
+            strongSelf.timeBlock(strongSelf);
+            
+            if (!strongSelf.repeats) {
+                [strongSelf invalidate];
+            }
+            
+            strongSelf.canImplement = true;
+        });
+        
+    }
+}
+
+- (void)fireSEL {
+    if (_canImplement) {
+        _canImplement = false;
+        __weak NKWeakTimer *weakSelf = self;
+        dispatch_async(self.dispatchQueue, ^{
+            __strong NKWeakTimer *strongSelf = weakSelf;
+            if (strongSelf.aTarget) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                [strongSelf.aTarget performSelector:strongSelf.aSelector withObject:strongSelf];
+#pragma clang diagnostic pop
+            } else {
+                [strongSelf invalidate];
+            }
+            
+            if (!strongSelf.repeats) {
+                [strongSelf invalidate];
+            }
+            
+            strongSelf.canImplement = true;
+        });
+    }
+}
+
 - (void)invalidate {
     @synchronized(self) {
-        if (self.isValid) {
-            self.valid = false;
-            dispatch_source_t dispatchSource = self.dispatchSource;
-            dispatch_async(self.dispatchPrivateSerialQueue, ^{
+        if (_valid) {
+            _valid = false;
+            dispatch_source_t dispatchSource = _dispatchSource;
+            dispatch_async(_dispatchPrivateSerialQueue, ^{
                 dispatch_source_cancel(dispatchSource);
             });
         }
     }
 }
 
-#pragma mark Fire
-- (void)fire {
-    __weak NKWeakTimer *weakSelf = self;
-    if (self.scheduledType == NKWeakTimerScheduledTypeSEL) {
-        dispatch_async(self.dispatchQueue, ^{
-            weakSelf.canImplement = false;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [weakSelf.aTarget performSelector:weakSelf.aSelector withObject:weakSelf];
-#pragma clang diagnostic pop
-            weakSelf.canImplement = true;
-        });
-    } else if (self.scheduledType == NKWeakTimerScheduledTypeBlock) {
-        dispatch_async(self.dispatchQueue, ^{
-            weakSelf.canImplement = false;
-            weakSelf.timeBlock(weakSelf);
-            weakSelf.canImplement = true;
-        });
-    }
-}
-
-- (void)fireBlock {
-    if (self.canImplement) {
-        self.canImplement = false;
-        __weak NKWeakTimer *weakSelf = self;
-        dispatch_async(self.dispatchQueue, ^{
-            weakSelf.timeBlock(weakSelf);
-            weakSelf.canImplement = true;
-        });
-        
-        if (!self.repeats) {
-            [self invalidate];
-        }
-    }
-}
-
-- (void)fireSEL {
-    if (self.canImplement) {
-        self.canImplement = false;
-        __weak NKWeakTimer *weakSelf = self;
-        dispatch_async(self.dispatchQueue, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [weakSelf.aTarget performSelector:weakSelf.aSelector withObject:weakSelf];
-#pragma clang diagnostic pop
-            weakSelf.canImplement = true;
-        });
-        
-        if (!self.repeats) {
-            [self invalidate];
-        }
-    }
-}
 
 #pragma mark Property
 - (void)setFireDate:(NSDate *)fireDate {
     @synchronized (self) {
-        if (fireDate && [fireDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] > 1.0f) {
+        if (fireDate && [fireDate timeIntervalSinceReferenceDate] - [NSDate timeIntervalSinceReferenceDate] > NKWeakTimerMinimumInterval) {
             _fireDate = fireDate;
-            self.firePrivateTimeInterval = [fireDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+            NSTimeInterval fireTime = [fireDate timeIntervalSinceReferenceDate] - [NSDate timeIntervalSinceReferenceDate];
+            dispatch_source_t dispatchSource = _dispatchSource;
             [self invalidate];
-            [self setupTimer];
+            [self setupTimerWithFireDate:fireTime];
+            dispatchSource = nil;
         }
     }
 }
@@ -244,58 +256,26 @@ static NSString *const kNKWeakTimerDispatchQueueLabel = @"com.gmail.kongxh.near.
     }
 }
 
-- (BOOL)isValid {
-    @synchronized (self) {
-        return _valid;
-    }
-}
+//- (void)setTolerance:(NSTimeInterval)tolerance {
+//    @synchronized(self) {
+//        if (tolerance != _tolerance && tolerance >= NKWeakTimerMinimumInterval && tolerance <= MIN(_timeInterval, 1)) {
+//            _tolerance = tolerance;
+//            dispatch_source_t dispatchSource = _dispatchSource;
+//            [self invalidate];
+//            [self setupTimerFromFireDate:false];
+//            dispatchSource = nil;
+//        }
+//    }
+//}
 
-- (void)setValid:(BOOL)valid {
-    @synchronized (self) {
-        _valid = valid;
-    }
-}
 
-- (BOOL)canImplement {
-    @synchronized(self) {
-        return _canImplement;
-    }
-}
-
-- (void)setCanImplement:(BOOL)canImplement {
-    @synchronized (self) {
-        _canImplement = canImplement;
-    }
-}
-
-- (void)setTolerance:(NSTimeInterval)tolerance
-{
-    @synchronized(self) {
-        if (tolerance != _tolerance && tolerance >= 0 && tolerance < self.timeInterval * 0.5f) {
-            _tolerance = tolerance;
-            [self invalidate];
-            [self setupTimer];
-        }
-    }
-}
-
-- (NSTimeInterval)tolerance
-{
-    @synchronized(self) {
-        return _tolerance;
-    }
-}
-
-#pragma mark System
+#pragma mark description
 /**
  *  Ststus in Debug
  */
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"\n<%@ %p> \n\ttime_interval = %f\n\tisValid = %@",
-            NSStringFromClass([self class]),
-            self,
-            self.timeInterval,
-            self.isValid ? @"TRUE" : @"FALSE"];
+    return [NSString stringWithFormat:@"__%@<%p>__timeInterval: %f, isValid: %@, repeatable: %@", NSStringFromClass([self class]), self, self.timeInterval, self.isValid ? @"TRUE" : @"FALSE", self.repeats ? @"TRUE" : @"FALSE"];
 }
+
 
 @end

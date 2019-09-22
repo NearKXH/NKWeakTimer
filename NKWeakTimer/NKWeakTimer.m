@@ -15,8 +15,8 @@ typedef NS_ENUM(NSUInteger, NKWeakTimerScheduledType) {
 };
 
 
-CGFloat const NKWeakTimerMinimumInterval = 0.01f;
-CGFloat const NKWeakTimerToleranceRate = 0.1f;
+double const NKWeakTimerMinimumInterval = 0.01f;
+double const NKWeakTimerToleranceRate = 0.1f;
 
 
 @interface NKWeakTimer ()

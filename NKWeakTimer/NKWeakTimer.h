@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 
-extern CGFloat const NKWeakTimerToleranceRate;      // 0.1f
-extern CGFloat const NKWeakTimerMinimumInterval;    // 0.01f
+extern double const NKWeakTimerToleranceRate;      // 0.1f
+extern double const NKWeakTimerMinimumInterval;    // 0.01f
 
 
 @interface NKWeakTimer : NSObject
